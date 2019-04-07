@@ -12,60 +12,46 @@
 	background: #df91ad; /* Firefox */
 }
 
-/* * {
-	cursor: default;
-} */
-
-html {
+body {
+	height: 100%;
+	width: 100%;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 800;
 	font-style: normal;
 	font-size: 100%;
-}
-
-html,
-body {
-	height: 100%;
-	width: 100%;
+	/* font-size: 16px; */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
-a {
-	text-decoration: none;
-	/*text-transform: uppercase;*/
-	/* cursor: none; */
-}
-
-.gradient-bg {
-	background: linear-gradient(0deg, #0a0a1b 50%, #120d49);
-}
+/* Top view */
 body.top {
 	background-color: #192735;
 	margin-left: 0px;
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
-	height: 100%;
-	width: 100%;
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
-
-/* Noise on view top */
+/* Noise on top view */
 body.top:after {
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100%;
 	height: 100%;
+	width: 100%;
 	content: '';
 	background-image: url(../img/noise.gif);
 	opacity: 0.06;
 	z-index: 100000;
 	pointer-events: none;
 }
-/* Noise on view detalis */
+body.top.on:after {
+	background-image: none;
+}
+
+/* Noise on detalis view */
 body.detail {
 	background-color: #192735;
 }
@@ -73,17 +59,16 @@ body.detail:after {
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100%;
 	height: 100%;
+	width: 100%;
 	content: '';
 	background-image: url(../img/noise.gif);
 	opacity: 0.05;
 	z-index: 10;
 }
 
-.contents {
-	width: 100%;
-	height: 100%;
+.gradient-bg {
+	background: linear-gradient(0deg, #0a0a1b 50%, #120d49);
 }
 
 /***************************************************** Curosel */
@@ -94,78 +79,39 @@ body.detail:after {
 	height: 100%;
 	width: 100%;
 }
-#cursel h2 {
-	position: absolute;
-	min-height: 150px;
-	line-height: 100%;
-	font-size: 6vw;
-	font-weight: 800;
-	font-style: normal;
-}
-
-/***************************************************** Center titles */
-.center-title h2 {
-	top: 50%;
-	left: 0%;
-	opacity: 0;
-	transform: translateY(-50%);
-	-webkit-transform: translateY(-50%);
-	letter-spacing: 20px;
-}
-.center-title h2.load {
-	opacity: 1;
-	left: 16%;
-	letter-spacing: 0px;
-}
-body.on .center-title h2 {
-	transform: translateY(-30%) scale(1.15);
-}
-.center-title-outline h2 {
-	color: transparent;
-	-webkit-text-stroke: 1px #fff;
-	z-index: 7;
-}
-.center-title-base h2 {
-	opacity: 0;
-	color: rgba(255, 255, 255, 0.9);
-	z-index: 4;
-}
 
 /***************************************************** Center images */
 .cursel-center-img {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translateY(-50%) translateX(-50%) skewX(-10deg);
-	-webkit-transform: translateY(-50%) translateX(-50%) skewX(-10deg);
-	width: auto;
 	height: 50%;
+	width: auto;
 	z-index: 5;
 	opacity: 0;
-	/* filter: blur(10px); */
+	/* opacity: 1; */
+	transform: translateY(-50%) skewX(-10deg);
 }
 .cursel-center-img.load {
 	opacity: 1;
-	/* filter: blur(0px); */
-	top: 50%;
-	left: 40%;
-	transform: translateY(-50%) translateX(-50%) skewX(0deg);
+	transform: translateY(-50%) translateX(-10vw);
 }
 .cursel-center-img img {
-	min-width: 30%;
-	height: 100%;
-}
-.cursel-center-img-after img,
-.cursel-center-img-before img {
 	position: absolute;
-}
-body.on .cursel-center-img-after img {
-	transform: /*skewY(2deg)*/ scale(1.1);
+	height: 100%;
+	min-width: 30%;
 }
 .cursel-center-img-before img {
 	opacity: 1;
 	visibility: visible;
+	z-index: 5;
 }
+.cursel-center-img-after img {
+	opacity: 0;
+	visibility: hidden;
+	z-index: 4;
+}
+/* On hover */
 body.on .cursel-center-img-before img {
 	opacity: 0;
 	visibility: hidden;
@@ -176,68 +122,104 @@ body.on .cursel-center-img-before img {
 	-ms-filter: blur(10px);
 	filter: blur(10px); */
 }
-.cursel-center-img-before img {
-	z-index: 5;
-}
-.cursel-center-img-after img {
-	z-index: 4;
+body.on .cursel-center-img-after img {
+	opacity: 1;
+	visibility: visible;
+	transform: /*skewY(2deg)*/ scale(1.1);
 }
 
-/***************************************************** Up titles */
+/***************************************************** Cursel titles */
+.cursel-up h2,
+.cursel-center h2,
+.cursel-down h2 {
+	position: absolute;
+	left: 15%;
+	line-height: 100%;
+	/* font-size: 12vh; */
+	font-size: 6vw;
+	font-weight: 800;
+	font-style: normal;
+}
+
+/***************************************************** Up title */
 .cursel-up h2 {
 	top: -25%;
-	left: 16%;
+	z-index: 4;
+	opacity: 0;
 	color: transparent;
 	-webkit-text-stroke: 1px #4f5861;
-	z-index: 4;
-	/* opacity: 0; */
 	/* transform: skew(-20deg, -20deg); */
 }
 .cursel-up h2.load {
 	opacity: 1;
-	top: -5%;
-	transform: skew(0deg, 0deg);
+	/* top: -5%; */
+	transform: translateY(75%);
+	/* transform: skew(0deg, 0deg); */
 }
+/* On mouse hover */
 body.on .cursel-up h2 {
-	top: -25%;
+	/* top: -25%; */
 	opacity: 0;
+	transform: translateY(0);
 }
 
-/***************************************************** Down titles */
+/***************************************************** Center title */
+.cursel-center-title h2 {
+	top: 50%;
+	opacity: 0;
+	/* opacity: 1; */
+	letter-spacing: 20px;
+	transform: translateY(-50%) translateX(-50%);
+}
+.cursel-center-title h2.load {
+	opacity: 1;
+	letter-spacing: 0px;
+	transform: translateY(-50%);
+}
+.cursel-center-title-base h2 {
+	color: rgba(255, 255, 255, 0.9);
+	z-index: 4;
+}
+.cursel-center-title-outline h2 {
+	color: transparent;
+	-webkit-text-stroke: 1px #fff;
+	z-index: 7;
+}
+/* On mouse hover */
+body.on .cursel-center-title h2 {
+	transform: translateY(-30%) scale(1.15);
+}
+
+/***************************************************** Down title */
 .cursel-down h2 {
 	bottom: -25%;
-	left: 16%;
+	z-index: 4;
+	opacity: 0;
 	color: transparent;
 	-webkit-text-stroke: 1px #4f5861;
-	z-index: 4;
-	/* opacity: 0;
-	transform: skew(-20deg, 20deg); */
+	/* transform: skew(-20deg, 20deg); */
 }
 .cursel-down h2.load {
 	opacity: 1;
-	bottom: -5%;
-	transform: skew(0deg, 0deg);
+	transform: translateY(-75%);
+	/* transform: skew(0deg, 0deg); */
 }
+/* On mouse hover */
 body.on .cursel-down h2 {
 	opacity: 0;
-	bottom: -25%;
+	/* bottom: -25%; */
+	transform: translateY(0);
 }
 
-/***************************************************** Count */
+/***************************************************** Count */ /* MORAM MALO SREDITI !!! */
 #count {
-	position: absolute;
-	top: 75%;
-	left: 10%;
+	position: fixed;
+	top: 70%;
+	left: 30vw;
 	color: rgba(255, 255, 255, 0.9);
-	font-size: 1vw;
-	font-weight: 600;
-	transform: translateY(-30%);
-	-webkit-transform: translateY(-50%);
-	margin-left: 8px;
 	opacity: 0;
-	-moz-transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-	-webkit-transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-	transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+	/* opacity: 1; */
+	font-size: 1.5vw;
 }
 #count-num {
 	font-size: 1.7vw;
@@ -246,14 +228,15 @@ body.on .cursel-down h2 {
 	font-size: 0.9vw;
 }
 #count.load {
-	top: 70%;
 	opacity: 1;
+	transform: translateX(-20vw);
 }
 
 /*************************************************** Animations */
+#count,
 .cursel-up h2,
-.center-title h2,
 .cursel-down h2,
+.cursel-center-title h2,
 .cursel-center-img {
 	-moz-transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 	-webkit-transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -266,37 +249,44 @@ body.on .cursel-down h2 {
 }
 
 /*************************************************** Cursel nimations */
-/* Remove all animations */
-#cursel.stop .center-title h2,
+/* Position center elements */
+#cursel.stop.up .cursel-center-title h2 {
+	opacity: 0;
+	/* transform: translateY(-200%); */
+	transform: translateY(-50vh);
+}
+#cursel.stop.down .cursel-center-title h2 {
+	opacity: 0;
+	transform: translateY(50vh);
+}
+
+/* Position up elements */
+#cursel.stop.up .cursel-up h2 {
+	transform: translateY(0);
+}
+#cursel.stop.down .cursel-up h2 {
+	color: rgba(255, 255, 255, 0.75);
+	transform: translateY(50vh);
+}
+
+/* Position down elements */
+#cursel.stop.up .cursel-down h2 {
+	color: rgba(255, 255, 255, 0.75);
+	transform: translateY(-50vh);
+}
+#cursel.stop.down .cursel-down h2 {
+	transform: translateY(0);
+}
+
+/* Stop all animations */
+#cursel.stop .cursel-center-title h2,
 #cursel.stop .cursel-up h2,
 #cursel.stop .cursel-down h2 {
 	transition: all 0s 0s !important;
 }
-/* Position elements */
-#cursel.stop.up .center-title h2 {
-	top: -5%;
-	transform: translateY(0);
-}
-#cursel.stop.up .cursel-up h2 {
-	top: -25%;
-}
-#cursel.stop.up .cursel-down h2 {
-	bottom: 50%;
-	transform: translateY(50%);
-}
-#cursel.stop.down .center-title h2 {
-	top: 95%;
-	transform: translateY(0);
-}
-#cursel.stop.down .cursel-up h2 {
-	top: 50%;
-	transform: translateY(-50%);
-}
-#cursel.stop.down .cursel-down h2 {
-	bottom: -25%;
-}
+
 /* Start all transations */
-#cursel.start .center-title h2,
+#cursel.start .cursel-center-title h2,
 #cursel.start .cursel-up h2,
 #cursel.start .cursel-down h2 {
 	transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;

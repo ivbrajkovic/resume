@@ -22,9 +22,11 @@ function preloadImages(images) {
 }
 
 (() => {
+	//#region Variables
 	let cursel = document.getElementById('cursel');
-	let linkHover = document.querySelector('.link-hover');
-	let centerTitleH2 = linkHover.querySelectorAll('.center-title h2');
+	// let linkHover = document.querySelector('.link-hover');
+	let linkHover = document.querySelector('.cursel-center');
+	let centerTitleH2 = linkHover.querySelectorAll('.cursel-center-title h2');
 	let centerImage = linkHover.querySelector('.cursel-center-img');
 	let before = centerImage.querySelector('.cursel-center-img-before');
 	let beforeImage = before.querySelector('img');
@@ -35,8 +37,9 @@ function preloadImages(images) {
 	let count = document.getElementById('count');
 	let countNum = document.getElementById('count-num');
 	let maxCount = document.getElementById('max-num');
+	//#endregion
 
-	// Load animation
+	//#region Load animation
 	setTimeout(() => {
 		centerImage.classList.add('load');
 	}, 2000);
@@ -54,6 +57,7 @@ function preloadImages(images) {
 	setTimeout(() => {
 		curselDownH2.classList.add('load');
 	}, 3000);
+	//#endregion
 
 	// DEBUG: kad se ide back sa strelicom !!!
 
@@ -65,32 +69,27 @@ function preloadImages(images) {
 		document.body.classList.remove('on');
 	});
 
+	//#region Titles and images
 	let TITLES = [
 		["IVAN'S<br>PORTFOLIO", 'detail/kazuki.html'],
 		['TITLE 1<br>SUBTITLE 1', 'detail/tamaki.html'],
-		['TITLE 2<br>SUBTITLE 2', 'detail/kose.html'],
-		['TITLE 3<br>SUBTITLE 3', 'detail/kawasaki.html'],
-		['TITLE 4<br>SUBTITLE 4', 'detail/misawa.html']
-
-		// ['WAKKA<br>LANDING PAGE', 'detail/wakka.html'],
-		// ['GUNGHO<br>FESTIVAL 2017', 'detail/gungho.html'],
-		// ['DELICA D:5<br>SPECIAL SITE', 'detail/delica.html'],
-		// ['KEY COFFEE<br>DRIP ON', 'detail/key.html'],
-		// ['ZETTAI GEIGEKI<br>WARS', 'detail/zettai.html'],
-		// ['COSMOS FAIR<br>2011', 'detail/cosmos.html'],
-		// ['THE MEDIA<br>GARDEN', 'detail/media.html']
+		['TITLE 2<br>SUBTITLE 2', 'detail/kose.html']
+		// ['TITLE 3<br>SUBTITLE 3', 'detail/kawasaki.html'],
+		// ['TITLE 4<br>SUBTITLE 4', 'detail/misawa.html']
 	];
 	let IMAGES = [
-		['https://picsum.photos/g/2000/1250?random&1', 'https://picsum.photos/2000/1250?random&1'],
-		['https://picsum.photos/g/2000/1250?random&2', 'https://picsum.photos/2000/1250?random&2'],
-		['https://picsum.photos/g/2000/1250?random&3', 'https://picsum.photos/2000/1250?random&3'],
-		['https://picsum.photos/g/2000/1250?random&4', 'https://picsum.photos/2000/1250?random&4'],
-		['https://picsum.photos/g/2000/1250?random&5', 'https://picsum.photos/2000/1250?random&5']
-		// ['02_tamaki_duotone.jpg', '02_tamaki.jpg'],
-		// ['03_kose_duotone.jpg', '03_kose.jpg'],
-		// ['04_kawasaki_duotone.jpg', '04_kawasaki.jpg'],
-		// ['05_misawa_duotone.jpg', '05_misawa.jpg']
+		// ['https://picsum.photos/g/2000/1250?random&1', 'https://picsum.photos/2000/1250?random&1'],
+		// ['https://picsum.photos/g/2000/1250?random&2', 'https://picsum.photos/2000/1250?random&2'],
+		// ['https://picsum.photos/g/2000/1250?random&3', 'https://picsum.photos/2000/1250?random&3'],
+		// ['https://picsum.photos/g/2000/1250?random&4', 'https://picsum.photos/2000/1250?random&4'],
+		// ['https://picsum.photos/g/2000/1250?random&5', 'https://picsum.photos/2000/1250?random&5']
+		['img/01_kazuki_duotone.jpg', 'img/01_kazuki.jpg'],
+		['img/02_tamaki_duotone.jpg', 'img/02_tamaki.jpg'],
+		['img/03_kose_duotone.jpg', 'img/03_kose.jpg']
+		// ['img/04_kawasaki_duotone.jpg', 'img/04_kawasaki.jpg'],
+		// ['img/05_misawa_duotone.jpg', 'img/05_misawa.jpg']
 	];
+	//#endregion
 
 	// ç”»åƒã®ãƒ—ãƒªãƒ­ãƒ¼ãƒ‰
 	// var preloadImage = function(path) {
@@ -192,6 +191,7 @@ function preloadImages(images) {
 		// 	afterImage.setAttribute('src', /*IMAGE_DIR + */ IMAGES[currentIndex][1]);
 		// }, IMAGE_CHANGE_DELAY);
 		setTimeout(function() {
+			// before.removeChild(before.firstChild);
 			before.removeChild(before.firstChild);
 			// console.log(preloadedImages);
 			// console.log(preloadedImages[currentIndex]);
@@ -233,6 +233,7 @@ function preloadImages(images) {
 
 	// Wait for intro to finish
 	// setTimeout(setScrollEvents, 6000);
+
 	preloadImages(IMAGES);
 
 	updateTitle();

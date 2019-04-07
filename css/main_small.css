@@ -1,0 +1,76 @@
+body {
+	/* font-size: 200%; */
+}
+
+/***************************************************** Curosel */
+/* #cursel {
+	position: fixed;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	height: 100%;
+	width: 100%;
+} */
+
+/***************************************************** Center images */
+.cursel-center-img {
+	top: 28%;
+	left: 30vw;
+	height: auto;
+	width: 100%;
+	/* opacity: 1; */
+	/* transform: translateY(-50%) skewX(-10deg); */
+	transform: skewX(0deg) skewX(-10deg);
+}
+.cursel-center-img.load {
+	opacity: 1;
+	transform: translateX(-30vw);
+}
+.cursel-center-img img {
+	height: auto;
+	width: 100%;
+	min-width: none;
+}
+
+/***************************************************** Center titles */
+.cursel-up h2,
+.cursel-center h2,
+.cursel-down h2 {
+	font-size: 10vw;
+}
+
+/***************************************************** Up titles */
+.cursel-up h2 {
+	top: -11%;
+}
+
+/***************************************************** Center title */
+.cursel-center-title h2 {
+	top: 60%;
+	transform: translateX(-100%);
+}
+.cursel-center-title h2.load {
+	top: 60%;
+	transform: translateX(0);
+}
+
+/***************************************************** Down title */
+.cursel-down h2 {
+	bottom: -11%;
+}
+
+/***************************************************** Count */ /* MORAM MALO SREDITI !!! */
+#count {
+	position: fixed;
+	top: 75%;
+	left: 30vw;
+	color: rgba(255, 255, 255, 0.9);
+	opacity: 0;
+	font-size: 4vw;
+}
+
+#count-num {
+	font-size: 5vw;
+}
+#max-num {
+	font-size: 3vw;
+}
